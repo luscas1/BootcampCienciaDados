@@ -87,3 +87,18 @@ Definição de colunas, restrições de unique, not null etc.
 
 # Atomicidade de dados - Formas Normais (1FN)
 Estabelece que cada valor em uma tabela deve ser atômico, indivisível. Nenhum campo deve conter múltiplos valores ou listas.
+
+# Tipos de JOIN
+
+* INNER JOIN: retorna apenas as informações que existem nas duas tabelas
+* LEFT JOIN: esquerda e tudo que tiver de correspondencia na direita
+* RIGHT JOIN: tudo da direita e o que deu match na esquerda
+* FULL JOIN: retornar todas as  linhas de todas as tabelas, o que não tem relacionamento retora NULL
+
+# SUB CONSULTAS
+
+Consultas aninhadas, usar o resultado de uma na outra
+
+# FUNÇÕES AGREGADAS
+Realizam um pré processamento ou cálculo nas nossas colunas
+

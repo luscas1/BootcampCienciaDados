@@ -79,3 +79,42 @@ SET rua = SUBSTRING_INDEX(SUBSTRING_INDEX(endereco, ',', 1), ',', -1),
  
 ALTER TABLE usuarios 
 DROP COLUMN endereco;
+
+SELECT * FROM usuarios us
+
+INNER JOIN reservas rs ON us.id = rs.id_usuario;
+
+SELECT * FROM usuarios us
+
+INNER JOIN reservas rs ON us.id = rs.id_usuario
+
+INNER JOIN destinos ds ON rs.id_destino = ds.id;
+
+SELECT * FROM usuarios us
+
+INNER JOIN reservas rs ON us.id = rs.id_usuario
+
+INNER JOIN destinos ds ON rs.id_destino = ds.id;
+
+SELECT * FROM destinos
+WHERE id NOT IN (SELECT id_destino FROM reservas);
+
+SELECT nome, (SELECT COUNT(*) FROM reservas WHERE id_usuario = usuarios.id) AS total_reservas FROM usuarios;
+
+SELECT COUNT(*) AS total FROM usuarios;
+
+SELECT COUNT(*) AS total FROM usuarios us
+INNER JOIN reservas rs ON us.id = rs.id_usuario;
+
+SELECT nome, MAX(TIMESTAMPDIFF(YEAR, data_nascimento, CURRENT_DATE())) AS maior_idade FROM usuarios;
+
+SELECT COUNT(*), id FROM reservas
+GROUP BY id;
+
+SELECT COUNT(*) AS QTD_RESERVAS, id FROM reservas
+GROUP BY id
+ORDER BY QTD_RESERVAS DESC;
+
+SELECT COUNT(*) AS QTD_RESERVAS, id FROM reservas
+GROUP BY id
+ORDER BY QTD_RESERVAS;
