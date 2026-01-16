@@ -102,3 +102,13 @@ Consultas aninhadas, usar o resultado de uma na outra
 # FUNÇÕES AGREGADAS
 Realizam um pré processamento ou cálculo nas nossas colunas
 
+* COUNT
+* SUM
+* AVG
+* MIN
+* MAX
+
+# Análise de execução
+EXPLAIN 
+
+
