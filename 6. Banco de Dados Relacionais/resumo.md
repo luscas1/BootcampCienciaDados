@@ -1,114 +1,177 @@
-# Banco de Dados Relacionais
+# Resumo sobre Banco de Dados
 
-Aprendendo SQL - Structured Query Language
+## Aprendendo SQL - Structured Query Language
 
-## Conceitos básicos
+### Conceitos Básicos
+SQL é uma linguagem de consulta estruturada que permite a manipulação e gerenciamento de dados em bancos de dados.
 
-É uma coleção organizada de informações ou dados, estruturada.
+### Tipos de Banco de Dados
+- **Relacionais/SQL**
+- **Não Relacionais/NoSQL**
+- **Orientado a Objetos**
+- **Hierárquico**
 
-## Tipos e banco de dados
-* Relacionais/SQL
-* Não Relacionais/NoSQL (Not only SQL)
-* Orientado a objetos
-* Hierárquico
+### Sistema de Gerenciamento de Banco de Dados (SGBD)
+Um SGBD é responsável por gerenciar e organizar os dados, oferecendo funcionalidades como CRUD (Create, Read, Update, Delete).
 
-## O que é um SGBD
-Sistema de gerenciamento de banco de dados
+### Estrutura de um Banco de Dados Relacional
+Os bancos de dados relacionais são organizados em tabelas, que contêm colunas e linhas.
 
-### Funcionalidades:
-CRUD
+#### Chaves Primárias e Estrangeiras
+- **Chave Primária**: Identifica de forma única cada registro.
+- **Identificadores Estrangeiros**: Referenciam chaves primárias de outras tabelas.
 
-* Crate, Read, Update e Delete
-
-## Estrutura de um DB relacional
-
-
-## Chaves primárias
-
-## Identificadores estrangeiros
-
-## Caracteristicas
-
-* Relacionamento entre tabelas
-* Linguagem de consulta estruturada
-* Integridade Referenciada
-* Normalização de Dados
-* Segurança
-* Flexibilidade e extensibilidade
-* Suporte a transações ACID
+### Características dos Bancos de Dados Relacionais
+- Relacionamento entre tabelas
+- Linguagem de consulta estruturada
+- Integridade referencial
+- Normalização de dados
+- Segurança
+- Flexibilidade e extensibilidade
+- Suporte a transações ACID
 
 ### ACID
-* Atomicidade - todas as operações sejam executadas com sucesso ou nenhuma é.
-* Consistência - garante que o DB saia de um estado consistente para outro estado consistente.
-* Isolamento - cada transação é executada de maneira isolada, sem interferir nas ações concorrentes.
-* Durabilidade - a alteração de informação é permanente e persiste no tempo. Alteração quando commitada não volta.
+- **Atomicidade**: Todas as operações devem ser executadas com sucesso ou nenhuma é.
+- **Consistência**: Garante que o banco de dados saia de um estado consistente para outro.
+- **Isolamento**: Cada transação é executada isoladamente.
+- **Durabilidade**: Alterações são permanentes após o commit.
 
+### Organização da SQL
+Dividida em:
+- **DQL**: Linguagem de consulta de dados (ex. SELECT)
+- **DML**: Linguagem de manipulação de dados (ex. INSERT, UPDATE, DELETE)
+- **DDL**: Linguagem de definição de dados (ex. CREATE, ALTER, DROP)
+- **DCL**: Linguagem de controle de dados (ex. GRANT, REVOKE)
+- **DTL**: Linguagem de transformação de dados (ex. BEGIN, COMMIT, ROLLBACK)
 
-## Ogranização da SQL
-Dividido em:
+### Sintaxe Básica
+- Nomes devem começar com letra ou sublinhado (_).
+- Podem conter letras, números e sublinhados.
+- São case sensitive.
 
-* DQL: linguagem de consulta de dados ex. SELECT
-* DML: linguagem de manipulação de dados ex. INSERT, UPDATE, DELETE
-* DDL: linguagem de definição de dados ex. CREATE, ALTER, DROP
-* DCL: linguagem de controle de dados ex. GRANT, REVOKE
-* DTL: linguagem de transformação de dados ex. BEGIN, COMMIT, ROLLBACK
+### Modelagem de Bancos de Dados Relacionais
+O Modelo de Entidades e Relacionamento (MER) é representado por Diagramas Entidade Relacionamento (DER).
 
-## Sintaxe básica
-
-* Os nomes devem começar com uma letra ou com um caractere de sublinhado (_);
-* Os nomes podem conter letras, números e caracteres de sublinhado;
-* Case sensitive (maiúsculas e minúsculas);
-
-## Modelagem de bancos de dados relacionais (MER e DER)
-
-O Modelo de Entidades e Relacionamento (MER) é representado através de diagramas denominados Diagramas Entidade Relacionamento (DER).
-
-### Entidades
-
-## Tabelas, colunas e linhas
-As tabelas são usadas para armazenar dados de forma organizada. Cada tabela em um db relacional tem um nome único e é dividia em colunas e linhas.
-
-* Coluna: estrutura dentro da tabela que representa umatributo específico. Cada coluna tem um nome único e armazena um tipo de dado.
-
-* Registro: informação em si. Chamado também de linha ou tupla.
+### Tabelas, Colunas e Linhas
+As tabelas armazenam dados organizados em colunas (atributos) e linhas (registros).
 
 #### Comando CREATE TABLE
-Definição de colunas, restrições de unique, not null etc.
+Define colunas e restrições (unique, not null, etc.).
 
-#### Tipos de dados:
-* Integer
-* Decimal
-* String
-* etc...
+#### Tipos de Dados
+- Integer
+- Decimal
+- String
+- Outros
 
-# Operações CRUD: INSERT  e SELECT
+### Operações CRUD
+- **INSERT**: Adiciona novos registros.
+- **SELECT**: Recupera dados.
 
-# Chave primáriaé um atributo ou conjunto de que identifica de forma exclusiva cada registro da nossa tabela
+### Atomicidade de Dados - Formas Normais (1FN)
+Cada valor em uma tabela deve ser atômico e indivisível.
 
-# Atomicidade de dados - Formas Normais (1FN)
-Estabelece que cada valor em uma tabela deve ser atômico, indivisível. Nenhum campo deve conter múltiplos valores ou listas.
+### Tipos de JOIN
+- **INNER JOIN**: Retorna informações comuns a ambas as tabelas.
+- **LEFT JOIN**: Retorna tudo da tabela da esquerda e correspondências da direita.
+- **RIGHT JOIN**: Retorna tudo da tabela da direita e correspondências da esquerda.
+- **FULL JOIN**: Retorna todas as linhas de ambas as tabelas.
 
-# Tipos de JOIN
+### Subconsultas
+Consultas aninhadas que utilizam resultados de outras consultas.
 
-* INNER JOIN: retorna apenas as informações que existem nas duas tabelas
-* LEFT JOIN: esquerda e tudo que tiver de correspondencia na direita
-* RIGHT JOIN: tudo da direita e o que deu match na esquerda
-* FULL JOIN: retornar todas as  linhas de todas as tabelas, o que não tem relacionamento retora NULL
+### Funções Agregadas
+Realizam cálculos nas colunas:
+- COUNT
+- SUM
+- AVG
+- MIN
+- MAX
 
-# SUB CONSULTAS
+### Análise de Execução
+Utiliza o comando EXPLAIN para entender o plano de execução de uma consulta.
 
-Consultas aninhadas, usar o resultado de uma na outra
+## Bancos de Dados Não Relacionais (NoSQL)
+- Não seguem modelos de tabelas e relacionamentos.
+- Projetados para alto volume de dados e escalabilidade.
+- Alta flexibilidade na estrutura de dados.
 
-# FUNÇÕES AGREGADAS
-Realizam um pré processamento ou cálculo nas nossas colunas
+### Vantagens
+- Flexibilidade de modelos
+- Alta escalabilidade
+- Melhor desempenho em consultas intensivas
+- Tolerância a falhas
 
-* COUNT
-* SUM
-* AVG
-* MIN
-* MAX
+### Desvantagens
+- Menor consistência imediata
+- Menor suporte a consultas complexas (depende do SGBD)
 
-# Análise de execução
-EXPLAIN 
+### Tipos de Banco de Dados NoSQL
+- **Key-Value**: Armazena dados como pares chave-valor (ex. DynamoDB).
+- **Documento**: Armazena documentos semi-estruturados (ex. MongoDB).
+- **Coluna**: Armazena dados em formato de colunas (ex. Apache Cassandra).
+- **Grafos**: Armazena dados interconectados (ex. Neo4j).
 
+## Introdução ao MongoDB
+Banco de dados NoSQL orientado a documentos, ideal para grandes volumes de dados e modelagem flexível.
 
+### Vantagens do MongoDB
+- Flexibilidade na modelagem de dados
+- Escalabilidade horizontal
+- Consultas ricas e suporte a consultas complexas
+- Alta disponibilidade
+
+### Desvantagens do MongoDB
+- Menor consistência imediata
+- Consultas complexas exigem planejamento
+- Maior consumo de espaço de armazenamento
+
+### Estrutura do MongoDB
+Composto por um ou mais databases, que contêm coleções de documentos.
+
+#### Coleções
+Agrupamentos lógicos de documentos, sem exigência de esquema.
+
+#### Coleções
+As coleções são agrupamentos lógicos de documentos no MongoDB. Elas não exigem um esquema fixo, permitindo que os documentos dentro de uma coleção tenham estruturas diferentes.
+
+**Características das Coleções:**
+- Os nomes das coleções devem seguir algumas regras:
+    - Devem começar com uma letra ou um caractere de sublinhado (_).
+    - Podem conter letras, números e caracteres de sublinhado.
+    - Não podem ser vazios.
+    - Não podem ter mais de 64 bytes de comprimento.
+
+#### Documentos
+Os documentos são as unidades básicas de dados armazenadas em uma coleção.
+
+**Características dos Documentos:**
+- Armazenados em formato BSON (Binary JSON), que permite estruturas flexíveis e semiestruturadas.
+- Cada documento possui um identificador único chamado _id.
+- Composto por pares de chaves e valores.
+- O tamanho máximo de um documento é de 16 MB.
+- Suportam aninhamento de documentos, permitindo estruturas hierárquicas.
+- Oferecem flexibilidade na evolução do esquema, permitindo alterações sem interrupções.
+
+* jsonformatter.curiousconcept.com
+
+#### Documentos
+Armazenados em BSON, com estrutura flexível e semiestruturada.
+
+#### Modelagem de dados orientada para consultas
+A modelagem de dados no MongoDB deve ser orientada  pelas consultas que serão realizadas com mais frequencia.
+
+**Inner Documents:**
+
+Denormalizar dados para evitar junções custosas. Dados relacionados podem ser armazenados na mesma estrutura.
+
+**Modelar usuário com estratégia desnormalizada**
+
+**Quando utilizar inner documments:**
+- Os dados aninhados são específicos para o documento pai
+- Os dados aninhhados são sempre acessados juntamente com o documento pai
+- A cardinalidade do relacionamento é um pra muitos (um usuário pode ter várias reservas)
+
+**Quando não utilizar inner documments:**
+
+Se os dados aninhados precisam ser consultados e atualizados independentemente do documento pai, é mais adequado utilizar coleções separadas.
