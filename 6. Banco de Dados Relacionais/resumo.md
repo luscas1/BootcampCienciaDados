@@ -159,7 +159,7 @@ Os documentos são as unidades básicas de dados armazenadas em uma coleção.
 Armazenados em BSON, com estrutura flexível e semiestruturada.
 
 #### Modelagem de dados orientada para consultas
-A modelagem de dados no MongoDB deve ser orientada  pelas consultas que serão realizadas com mais frequencia.
+A modelagem de dados no MongoDB deve ser orientada pelas consultas que serão realizadas com mais frequência.
 
 **Inner Documents:**
 
@@ -167,11 +167,129 @@ Denormalizar dados para evitar junções custosas. Dados relacionados podem ser 
 
 **Modelar usuário com estratégia desnormalizada**
 
-**Quando utilizar inner documments:**
-- Os dados aninhados são específicos para o documento pai
-- Os dados aninhhados são sempre acessados juntamente com o documento pai
-- A cardinalidade do relacionamento é um pra muitos (um usuário pode ter várias reservas)
+**Quando utilizar inner documents:**
+- Os dados aninhados são específicos para o documento pai.
+- Os dados aninhados são sempre acessados juntamente com o documento pai.
+- A cardinalidade do relacionamento é um para muitos (um usuário pode ter várias reservas).
 
-**Quando não utilizar inner documments:**
+**Quando não utilizar inner documents:**
 
 Se os dados aninhados precisam ser consultados e atualizados independentemente do documento pai, é mais adequado utilizar coleções separadas.
+
+#### Relacionamentos no MongoDB
+No MongoDB, os relacionamentos entre documentos podem ser modelados de duas maneiras principais: **embutidos** e **referenciados**.
+
+**1. Relacionamentos Embutidos:**
+- Utiliza inner documents para armazenar dados relacionados dentro do mesmo documento.
+- Ideal para dados que são frequentemente acessados juntos e têm uma relação forte.
+- Exemplo: Um documento de usuário que contém uma lista de endereços.
+
+**2. Relacionamentos Referenciados:**
+- Armazena referências a outros documentos em coleções separadas.
+- Útil quando os dados relacionados são grandes ou precisam ser acessados de forma independente.
+- Exemplo: Um documento de usuário que contém um ID de referência para uma coleção de reservas.
+
+**Considerações ao escolher o tipo de relacionamento:**
+- **Desempenho:** Embutir documentos pode melhorar o desempenho em consultas, mas pode aumentar a complexidade na atualização de dados.
+- **Flexibilidade:** Referenciar documentos permite uma estrutura mais flexível, mas pode resultar em consultas mais complexas.
+- **Consistência:** Avaliar a necessidade de manter a consistência entre documentos relacionados.
+
+Luiztools.com.br
+A escolha entre embutir ou referenciar depende do caso de uso específico e das necessidades de consulta da aplicação.
+
+#### Operações MongoDB
+
+- Create database
+
+    ``` use viagens ```
+- Create collection
+   
+   ``` db.viagens.insertOne({}) ```
+
+    ```db.createCollection("destinos")```
+
+- Inserir um registro
+    
+    ``` 
+    db.usuarios.insertOne({
+    "nome": "Lucas Motta",
+    "email": "lucas.motta09@gmail.com",
+    "idade": 24,
+    "data_nascimento": "2002-01-03",
+    })
+    ```
+
+- Inserir muitos registros
+    
+    ``` 
+    db.usuarios.insertMany([
+    {
+    "nome": "Lucas Motta",
+    "email": "lucas.motta09@gmail.com",
+    "idade": 24,
+    "data_nascimento": "2002-01-03",
+    },
+    {
+    "nome": "Lucas Motta",
+    "email": "lucas.motta09@gmail.com",
+    "idade": 24,
+    "data_nascimento": "2002-01-03",
+    },])
+    ```
+
+- consultando documentos
+
+    ```db.usuarios.find({})```
+
+    Retorna o primeiro
+
+
+    ```db.usuarios.findOne({"nome": "Lucas Motta"})```
+
+    Atualiza informação do primeiro que encontrar
+    ```db.usuarios.findOneAndUpdate({"nome":"Lucas Motta"}, {$set:      {"nome":"Lucas Silva"}})```
+
+
+    Deletar user pelo Id
+
+    ```db.usuarios.deleteOne({"_id":ObjectId("69717fb7fa538ab58d50113b")})```
+
+#### Consultas Simples
+
+```
+// Operadores Lógicos
+db.usuarios.find({ $and: [{ idade: { $gte: 18 } }, { cidade: "São Paulo" }] });
+
+db.usuarios.find({ $or: [{ idade: { $lt: 18 } }, { cidade: "Rio de Janeiro" }] });
+
+db.usuarios.find({ idade: { $not: { $eq: 25 } } });
+
+// Operadores de Comparação
+db.usuarios.find({ idade: { $eq: 25 } });
+
+db.usuarios.find({ idade: { $ne: 30 } });
+
+db.usuarios.find({ idade: { $gt: 30 } });
+
+db.usuarios.find({ idade: { $gte: 30 } });
+
+db.usuarios.find({ idade: { $lt: 30 } });
+
+db.usuarios.find({ idade: { $lte: 30 } });
+
+db.usuarios.find({ cidade: { $in: ["São Paulo", "Rio de Janeiro"] } });
+
+db.usuarios.find({ cidade: { $nin: ["São Paulo", "Rio de Janeiro"] } });
+
+
+// Projeção
+db.usuarios.find({}, { nome: 1, idade: 1 })
+
+// Ordenação
+db.usuarios.find().sort({ idade: 1 })
+// Limitação
+db.usuarios.find().limit(10)
+// Paginação
+db.usuarios.find().skip(10).limit(5)
+
+```
